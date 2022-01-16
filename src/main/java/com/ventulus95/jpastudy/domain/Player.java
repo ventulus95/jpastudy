@@ -27,6 +27,18 @@ public class Player {
 	@JoinColumn(name = "TEAM_ID")
 	private Team team;
 
+	public void addTeam(Team team){
+		if(this.team!=null)
+			this.team.getMembers().remove(this);
+		this.team = team;
+		team.getMembers().add(this);
+	}
+
+	public void addBugTeam(Team team){
+		this.team = team;
+		team.getMembers().add(this);
+	}
+
 	public Player(Long id, String name) {
 		this.id = id;
 		this.name = name;
